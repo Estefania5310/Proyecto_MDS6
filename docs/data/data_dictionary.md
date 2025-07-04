@@ -21,3 +21,10 @@ Alto promedio: 2702.45, Desviación estándar: 385.13
 Ancho min: 2421, Ancho max: 5184
 Alto min: 1728, Alto max: 3456
 
+
+### 📊 Distribución de Tamaños de Imagen Originales
+- Ancho promedio: 3986.06, Desviación estándar: 521.47
+- Alto promedio: 2702.45, Desviación estándar: 385.13
+- Ancho min: 2421, Ancho max: 5184
+- Alto min: 1728, Alto max: 3456
+
