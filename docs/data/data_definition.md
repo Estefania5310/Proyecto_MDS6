@@ -26,7 +26,7 @@ En esta carpeta se almacenan las imágenes organizadas por clases y por conjunto
 
 ---
 
-### Procedimientos de transformación
+### Estructura y Procedimientos de transformación
 
 - **Formato**: Imágenes en `.jpg`  
 - **Etiquetas**: Definidas por el nombre de la carpeta que contiene la imagen  
