@@ -1,16 +1,16 @@
+
 ## Origen de los datos
 
-Los datos utilizados en este proyecto provienen del repositorio público [Plant Disease Recognition Dataset](https://www.kaggle.com/datasets/rashikrahmanpritom/plant-disease-recognition-dataset), disponible en la plataforma Kaggle. El conjunto incluye 1.530 imágenes clasificadas en tres categorías: Healthy, Powdery Mildew y Rust.  
-La descarga se realizó a través de la API oficial de Kaggle, y los archivos fueron almacenados en Google Drive para facilitar su procesamiento en Google Colab.
+Los datos utilizados en este proyecto provienen del repositorio público [Plant Disease Recognition Dataset](https://www.kaggle.com/datasets/rashikrahmanpritom/plant-disease-recognition-dataset), disponible en la plataforma Kaggle. La descarga se realizó a través de la API oficial de Kaggle, y los archivos fueron almacenados en Google Drive para facilitar su procesamiento.
 
 ---
 
 ## Especificación de los scripts para la carga de datos
 
 La carga de los datos se realiza mediante el script ubicado en:  
-**code/data_ingestion/load_data.py**
+**Proyecto_MDS6/src/data/load_data.py**
 
-Este script define la función `cargar_datasets()` que usa `tf.keras.utils.image_dataset_from_directory()` para convertir carpetas de imágenes en objetos `tf.data.Dataset`, listos para ser usados en el entrenamiento del modelo.
+Este script define la función `cargar_datasets()`, que permite cargar imágenes organizadas en carpetas según su clase para construir los conjuntos de entrenamiento, validación y prueba. A partir de las rutas proporcionadas (train_dir, val_dir, test_dir), la función utiliza `tf.keras.utils.image_dataset_from_directory` para leer automáticamente las imágenes, redimensionarlas al tamaño especificado, agruparlas en lotes (batch_size) y asignar etiquetas basadas en el nombre de las subcarpetas. El resultado son tres objetos `tf.data.Dataset` que contienen tensores con las imágenes y sus respectivas etiquetas
 
 ---
 
@@ -20,13 +20,13 @@ Este script define la función `cargar_datasets()` que usa `tf.keras.utils.image
   https://www.kaggle.com/datasets/rashikrahmanpritom/plant-disease-recognition-dataset
 
 - **Ruta local de almacenamiento (Google Drive)**:  
-  `/content/drive/MyDrive/Proyecto_MDS6/data/raw/`
+  https://drive.google.com/drive/folders/1v1ZclyXgblKxRnChCdwB_TC_xFC09ygq
 
 En esta carpeta se almacenan las imágenes organizadas por clases y por conjunto (entrenamiento, validación, prueba).
 
 ---
 
-## Rutas de origen de datos
+### Procedimientos de transformación
 
 - **Formato**: Imágenes en `.jpg`  
 - **Etiquetas**: Definidas por el nombre de la carpeta que contiene la imagen  
@@ -35,21 +35,3 @@ En esta carpeta se almacenan las imágenes organizadas por clases y por conjunto
   - Aumentación de datos (rotaciones, brillo, zoom)
   - Normalización de píxeles
 
----
-
-## Base de datos de destino
-
-Este proyecto no utiliza una base de datos tradicional (SQL/NoSQL).  
-Los datos se manipulan como tensores en memoria a través de objetos `tf.data.Dataset` dentro del entorno de Google Colab.
-
-- **Destino en memoria**:  
-  Tensores cargados en batches para entrenamiento y validación
-
-- **Estructura destino**:
-  - Tensores de imágenes: `(batch_size, height, width, channels)`
-  - Tensores de etiquetas: `(batch_size, 1)`
-
-- **Procesos aplicados**:
-  - Conversión de imágenes en tensores
-  - Batching y shuffling
-  - Asignación automática de etiquetas según carpeta
