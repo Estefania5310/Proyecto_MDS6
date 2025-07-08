@@ -1,8 +1,8 @@
-# Reporte de Datos
+"""# Reporte de Datos
 
 Este documento contiene los resultados del análisis exploratorio de datos.
 
-## Resumen general de los datos
+## Resumen general de los datos (hola)
 
 En esta sección se presenta un resumen general de los datos. Se describe el número total de observaciones, variables, el tipo de variables, la presencia de valores faltantes y la distribución de las variables.
 
@@ -24,4 +24,4 @@ En esta sección se presenta un ranking de las variables más importantes para p
 
 ## Relación entre variables explicativas y variable objetivo
 
-En esta sección se presenta un análisis de la relación entre las variables explicativas y la variable objetivo. Se utilizan gráficos como la matriz de correlación y el diagrama de dispersión para entender mejor la relación entre las variables. Además, se pueden utilizar técnicas como la regresión lineal para modelar la relación entre las variables.
+En esta sección se presenta un análisis de la relación entre las variables explicativas y la variable objetivo. Se utilizan gráficos como la matriz de correlación y el diagrama de dispersión para entender mejor la relación entre las variables. Además, se pueden utilizar técnicas como la regresión lineal para modelar la relación entre las variables."""
