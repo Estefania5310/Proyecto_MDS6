@@ -13,7 +13,7 @@ como la incorporación de nuevas capas, el ajuste de hiperparámetros o la aplic
 
 Las **variables de entrada** para el modelo *baseline* consisten en **lotes (batches) de imágenes de hojas**, 
 las cuales son cargadas y preprocesadas directamente utilizando la función `keras.utils.image_dataset_from_directory`. 
-Cada lote se estructura como un **tensor NumPy** con dimensiones de: $(batch\_size, img\_height, img\_width, num\_channels)$,  
+Cada lote se estructura como un **tensor NumPy** con dimensiones de: $(`batch_size`, `img_height`, `img_width`, `num_channels`)$,  
 lo que se traduce específicamente en $(128, 180, 180, 3)$. Esto significa que el tamaño del lote (`batch_size`) es de $128$ imágenes, 
 y cada imagen tiene unas dimensiones estandarizadas de ${180 \times 180}$ píxeles con $3$ canales para las imágenes RGB. Es crucial destacar que, 
 previo a la alimentación al modelo, el conjunto de datos de entrenamiento fue **ampliado significativamente mediante técnicas de *Data Augmentation***. 
@@ -58,8 +58,8 @@ La precisión, representada por la variable **`accuracy`**, es la métrica más 
 Mide la proporción de predicciones correctas del modelo.
 
 * **Definición Técnica:** La precisión se calcula como el **número de predicciones correctas dividido por el número total de muestras** en el conjunto 
-de datos de prueba.
-    $$\text{Accuracy} = \frac{\text{Número de Predicciones Correctas}}{\text{Número Total de Muestras}}$$
+de datos de prueba.\\
+    $$\text{Accuracy} = \frac{\text{Número de Predicciones Correctas}}{\text{Número Total de Muestras}}$$\\
 * **Interpretación:** Un **valor de `accuracy` más alto** indica que el modelo clasifica correctamente una mayor proporción de las imágenes en el conjunto 
 de prueba. Por ejemplo, una precisión del $0.90$ (o $90\%$) significa que el modelo clasificó correctamente el $90\%$ de las imágenes.
 
@@ -71,25 +71,26 @@ El modelo *baseline* fue entrenado y evaluado, obteniendo los siguientes resulta
 
 ### Arquitectura del Modelo
 
-La arquitectura del modelo, denominada "sequential", está compuesta por capas convolucionales (`Conv2D`), capas de *pooling* (`MaxPooling2D`), una capa de aplanamiento (`Flatten`) y una capa densa final para la clasificación. La configuración específica de las capas se detalla a continuación:
+La arquitectura del modelo, denominada "sequential", está compuesta por capas convolucionales (`Conv2D`), capas de *pooling* (`MaxPooling2D`), 
+una capa de aplanamiento (`Flatten`) y una capa densa final para la clasificación. La configuración específica de las capas se detalla a continuación:
 
 ```
 
 Model: "sequential"
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
-┃ Layer (type)                    ┃ Output Shape           ┃       Param \# ┃
+┃ Layer (type)                    ┃ Output Shape           ┃       Param \#┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
 │ conv2d (Conv2D)                 │ (None, 178, 178, 32)   │           896 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max\_pooling2d (MaxPooling2D)    │ (None, 89, 89, 32)     │             0 │
+│ max\_pooling2d (MaxPooling2D)   │ (None, 89, 89, 32)     │             0 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d\_1 (Conv2D)               │ (None, 87, 87, 64)     │        18,496 │
+│ conv2d\_1 (Conv2D)              │ (None, 87, 87, 64)     │        18,496 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max\_pooling2d\_1 (MaxPooling2D)  │ (None, 43, 43, 64)     │             0 │
+│ max\_pooling2d\_1 (MaxPooling2D)│ (None, 43, 43, 64)     │             0 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d\_2 (Conv2D)               │ (None, 41, 41, 128)    │        73,856 │
+│ conv2d\_2 (Conv2D)              │ (None, 41, 41, 128)    │        73,856 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max\_pooling2d\_2 (MaxPooling2D)  │ (None, 20, 20, 128)    │             0 │
+│ max\_pooling2d\_2 (MaxPooling2D)│ (None, 20, 20, 128)    │             0 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
 │ flatten (Flatten)               │ (None, 51200)          │             0 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
@@ -103,7 +104,8 @@ Non-trainable params: 0 (0.00 B)
 
 ### Proceso de Entrenamiento
 
-El entrenamiento del modelo se realizó durante $15$ épocas. A continuación, se presentan las métricas de pérdida (`loss`) y precisión (`accuracy`) tanto para el conjunto de entrenamiento como para el conjunto de validación (`val_loss`, `val_accuracy`) a lo largo de las primeras épocas:
+El entrenamiento del modelo se realizó durante $15$ épocas. A continuación, se presentan las métricas de pérdida (`loss`) y precisión (`accuracy`) 
+tanto para el conjunto de entrenamiento como para el conjunto de validación (`val_loss`, `val_accuracy`) a lo largo de las primeras épocas:
 
 ```
 
@@ -128,7 +130,8 @@ Epoch 15/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 1
 
 ### Rendimiento en el Conjunto de Prueba
 
-Finalmente, el modelo fue evaluado en un conjunto de datos de prueba independiente para estimar su capacidad de generalización. Los resultados obtenidos fueron:
+Finalmente, el modelo fue evaluado en un conjunto de datos de prueba independiente para estimar su capacidad de generalización. Los resultados 
+obtenidos fueron:
 
 ```
 
@@ -140,7 +143,8 @@ Finalmente, el modelo fue evaluado en un conjunto de datos de prueba independien
 * **Pérdida en el conjunto de prueba:** $0.6460$
 * **Precisión en el conjunto de prueba:** $0.8267$
 
-Estos resultados indican que el modelo *baseline* logró una **precisión superior al $82\%$** en la clasificación de las imágenes de hojas en el conjunto de datos no visto, con un valor de pérdida razonable, lo que sugiere un buen desempeño para el punto de partida.
+Estos resultados indican que el modelo *baseline* logró una **precisión superior al $82\%$** en la clasificación de las imágenes de hojas en el 
+conjunto de datos no visto, con un valor de pérdida razonable, lo que sugiere un buen desempeño para el punto de partida.
 ```
 
 ------------------------------------------------------------------------------------------------------------
