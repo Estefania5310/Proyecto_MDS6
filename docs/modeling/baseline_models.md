@@ -11,7 +11,16 @@ como la incorporación de nuevas capas, el ajuste de hiperparámetros o la aplic
 
 ## Variables de entrada
 
-Las **variables de entrada** para el modelo *baseline* consisten en **lotes (batches) de imágenes de hojas**, las cuales son cargadas y preprocesadas directamente utilizando la función `keras.utils.image_dataset_from_directory`. Cada lote se estructura como un **tensor NumPy** con dimensiones de `$(batch\_size, img\_height, img\_width, num\_channels)$`, lo que se traduce específicamente en `$(128, 180, 180, 3)$`. Esto significa que el tamaño del lote (`batch_size`) es de $128$ imágenes, y cada imagen tiene unas dimensiones estandarizadas de ${180 \times 180}$ píxeles con $3$ canales para las imágenes RGB. Es crucial destacar que, previo a la alimentación al modelo, el conjunto de datos de entrenamiento fue **ampliado significativamente mediante técnicas de *Data Augmentation***. Esto permitió generar variaciones sintéticas de las imágenes existentes, incrementando la diversidad y cantidad de los datos de entrada, lo cual es fundamental para mejorar la robustez y la capacidad de generalización del modelo en tareas de clasificación de imágenes.
+Las **variables de entrada** para el modelo *baseline* consisten en **lotes (batches) de imágenes de hojas**, 
+las cuales son cargadas y preprocesadas directamente utilizando la función `keras.utils.image_dataset_from_directory`. 
+Cada lote se estructura como un **tensor NumPy** con dimensiones de
+```math
+(batch\_size, img\_height, img\_width, num\_channels), 
+lo que se traduce específicamente en $(128, 180, 180, 3)$. Esto significa que el tamaño del lote (`batch_size`) es de $128$ imágenes, 
+y cada imagen tiene unas dimensiones estandarizadas de ${180 \times 180}$ píxeles con $3$ canales para las imágenes RGB. Es crucial destacar que, 
+previo a la alimentación al modelo, el conjunto de datos de entrenamiento fue **ampliado significativamente mediante técnicas de *Data Augmentation***. 
+Esto permitió generar variaciones sintéticas de las imágenes existentes, incrementando la diversidad y cantidad de los datos de entrada, 
+lo cual es fundamental para mejorar la robustez y la capacidad de generalización del modelo en tareas de clasificación de imágenes.
 
 ---
 
