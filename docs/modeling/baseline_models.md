@@ -20,8 +20,6 @@ previo a la alimentación al modelo, el conjunto de datos de entrenamiento fue *
 Esto permitió generar variaciones sintéticas de las imágenes existentes, incrementando la diversidad y cantidad de los datos de entrada, 
 lo cual es fundamental para mejorar la robustez y la capacidad de generalización del modelo en tareas de clasificación de imágenes.
 
----
-
 ## Variable Objetivo del Modelo *Baseline*
 
 La **variable objetivo** para el modelo *baseline* es la **categoría de salud de la hoja**, la cual es una variable categórica discreta con tres 
@@ -30,14 +28,10 @@ clases mutuamente excluyentes:
 Esto significa que cada categoría se convierte en un vector binario de tres dimensiones (por ejemplo, $[1, 0, 0]$ para 'Healthy', $[0, 1, 0]$ para 
 'Powdery' y $[0, 0, 1]$ para 'Rust'). El objetivo del modelo es predecir con precisión una de estas tres categorías para cada imagen de hoja de entrada.
 
----
-
 ## Evaluación del modelo
 
 ### Métricas de evaluación
 Para evaluar el rendimiento del modelo *baseline*, se utilizaron dos métricas clave:
-
----
 
 #### 1. Función de Pérdida (Loss Function)
 
@@ -50,8 +44,6 @@ Esta función penaliza al modelo por cada predicción incorrecta y por la confia
 * **Interpretación:** Un **valor de `loss` más bajo** indica que el modelo está realizando predicciones más precisas y confiables, lo que sugiere un mejor 
 ajuste a los datos de prueba.
 
----
-
 #### 2. Precisión (Accuracy)
 
 La precisión, representada por la variable **`accuracy`**, es la métrica más intuitiva y ampliamente utilizada para problemas de clasificación. 
@@ -63,9 +55,7 @@ de datos de prueba.
 $$\text{Accuracy} = \frac{\text{Número de Predicciones Correctas}}{\text{Número Total de Muestras}}$$
 
 * **Interpretación:** Un **valor de `accuracy` más alto** indica que el modelo clasifica correctamente una mayor proporción de las imágenes en el conjunto 
-de prueba. Por ejemplo, una precisión del $0.90$ (o $90\%$) significa que el modelo clasificó correctamente el $90\%$ de las imágenes.
-
----
+de prueba. Por ejemplo, una precisión del $0.90$ (o $90%$) significa que el modelo clasificó correctamente el $90%$ de las imágenes.
 
 ## Resultados de evaluación
 
@@ -128,8 +118,6 @@ obtenidos fueron:
 * **Pérdida en el conjunto de prueba:** $0.6460$
 * **Precisión en el conjunto de prueba:** $0.8267$
 
-------------------------------------------------------------------------------------------------------------
-
 ## Análisis de los resultados
 
 veamos las pérdidas del modelo y la progresión del accuracy a lo largo de las épocas, en general se observa una brecha importante entre los resultados 
@@ -137,7 +125,7 @@ de entrenamiento versus los resultados de la base de test, tanto en la evolucón
 
 ![Gráfica de Precisión del Modelo Baseline](grafica1.png)
 
-Estos resultados indican que el modelo *baseline* logró una **precisión superior al $82\%$** en la clasificación de las imágenes de hojas en el 
+Estos resultados indican que el modelo *baseline* logró una **precisión superior al $82%$** en la clasificación de las imágenes de hojas en el 
 conjunto de datos no visto, con un valor de pérdida razonable, lo que sugiere un buen desempeño para el punto de partida.
 
 ## Conclusiones
