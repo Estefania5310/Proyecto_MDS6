@@ -151,10 +151,16 @@ La precisión y la pérdida en el conjunto de validación también muestran mejo
 El modelo fue evaluado en un conjunto de prueba independiente para estimar su capacidad de generalización en datos no vistos. 
 A continuación, se presenta el reporte de clasificación:
 
-| Métrica              | Valor   |
-| :------------------- | :------ |
-| **Precisión (Test)** | 0.98    |
-| **Pérdida (Test)** | N/A (no se muestra directamente en el reporte de clasificación, pero se infiere que es baja dado el rendimiento) |
+
+| Clase | Precisión | Exhaustividad (Recall) | Puntuación F1 (F1-score) | Soporte |
+| :---- | :-------- | :--------------------- | :----------------------- | :------ |
+| 0     | 0.94      | 1.00                   | 0.97                     | 50      |
+| 1     | 1.00      | 0.94                   | 0.97                     | 50      |
+| 2     | 1.00      | 1.00                   | 1.00                     | 50      |
+|       |           |                        |                          |         |
+| **Accuracy** | **0.98** |                        |                          | **150** |
+| **Macro Avg** | **0.98** | **0.98** | **0.98** | **150** |
+| **Weighted Avg** | **0.98** | **0.98** | **0.98** | **150** |
 
 Los resultados de la evaluación son excepcionales, indicando un alto rendimiento del modelo de fine-tuning:
 
