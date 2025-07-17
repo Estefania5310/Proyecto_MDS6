@@ -13,7 +13,7 @@ como la incorporación de nuevas capas, el ajuste de hiperparámetros o la aplic
 
 Las **variables de entrada** para el modelo *baseline* consisten en **lotes (batches) de imágenes de hojas**, 
 las cuales son cargadas y preprocesadas directamente utilizando la función `keras.utils.image_dataset_from_directory`. 
-Cada lote se estructura como un **tensor NumPy** con dimensiones de: $$(batch\_size, img\_height, img\_width, num\_channels)$$,  
+Cada lote se estructura como un **tensor NumPy** con dimensiones de: $(batch\_size, img\_height, img\_width, num\_channels)$,  
 lo que se traduce específicamente en $(128, 180, 180, 3)$. Esto significa que el tamaño del lote (`batch_size`) es de $128$ imágenes, 
 y cada imagen tiene unas dimensiones estandarizadas de ${180 \times 180}$ píxeles con $3$ canales para las imágenes RGB. Es crucial destacar que, 
 previo a la alimentación al modelo, el conjunto de datos de entrenamiento fue **ampliado significativamente mediante técnicas de *Data Augmentation***. 
