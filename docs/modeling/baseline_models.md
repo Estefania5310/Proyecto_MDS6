@@ -58,8 +58,8 @@ La precisión, representada por la variable **`accuracy`**, es la métrica más 
 Mide la proporción de predicciones correctas del modelo.
 
 * **Definición Técnica:** La precisión se calcula como el **número de predicciones correctas dividido por el número total de muestras** en el conjunto 
-de datos de prueba. \newline
-    $$\text{Accuracy} = \frac{\text{Número de Predicciones Correctas}}{\text{Número Total de Muestras}}$$ \newline
+de datos de prueba.  
+    $$\text{Accuracy} = \frac{\text{Número de Predicciones Correctas}}{\text{Número Total de Muestras}}$$  
 * **Interpretación:** Un **valor de `accuracy` más alto** indica que el modelo clasifica correctamente una mayor proporción de las imágenes en el conjunto 
 de prueba. Por ejemplo, una precisión del $0.90$ (o $90\%$) significa que el modelo clasificó correctamente el $90\%$ de las imágenes.
 
