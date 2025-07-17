@@ -69,8 +69,6 @@ Básicamente, calcula el promedio de los valores de cada mapa de característica
 * Dense (Capa Densa 2 - Salida): Capa se salida con número de neuronas igual al número de clases para este caso 3 ('Healthy', 'Powdery', 'Rust'), 
 con función de activación softmax ya que enfrentamos un problema multiclase.
 
-### Resumen de Parámetros de la Arquitectura
-
 Las imágenes de entrada se procesan con dimensiones de **$224 \times 224$ píxeles** y **$3$ canales de color (RGB)**. 
 El modelo completo consta de $4,090,662$ parámetros. Sin embargo, en la fase de entrenamiento inicial (y ajustado a nuestro problema de clasificación), 
 solo $41,091$ parámetros son "entrenables" (es decir, se ajustarán durante el entrenamiento). 
