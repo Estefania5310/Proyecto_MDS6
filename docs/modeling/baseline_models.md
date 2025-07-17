@@ -135,7 +135,7 @@ obtenidos fueron:
 veamos las pérdidas del modelo y la progresión del accuracy a lo largo de las épocas, en general se observa una brecha importante entre los resultados 
 de entrenamiento versus los resultados de la base de test, tanto en la evolucón del accuracy como en la disminución del parámetro de pérdida.
 
-(docs/modeling/grafica1.png)
+![Gráfica de Precisión del Modelo Baseline](docs/modeling/grafica1.png)
 
 Estos resultados indican que el modelo *baseline* logró una **precisión superior al $82\%$** en la clasificación de las imágenes de hojas en el 
 conjunto de datos no visto, con un valor de pérdida razonable, lo que sugiere un buen desempeño para el punto de partida.
