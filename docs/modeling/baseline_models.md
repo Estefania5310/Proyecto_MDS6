@@ -142,10 +142,8 @@ conjunto de datos no visto, con un valor de pérdida razonable, lo que sugiere u
 
 ## Conclusiones
 
-Conclusiones generales sobre el rendimiento del modelo baseline y posibles áreas de mejora.
+En terminos generales el modelo base posee un buen desempeño con una precisión superior al 82% sin embargo se desea realizar un Fine tuning 
+con una red preentrenada RestNet con el fin de comparar los resultados y seleccionar el mejor modelo. 
+Lo ideal es hallar el modelo con la mejor clasificación de enfermedades de las plantas mediante imágenes.
 
 ## Referencias
-
-Lista de referencias utilizadas para construir el modelo baseline y evaluar su rendimiento.
-
-Espero que te sea útil esta plantilla. Recuerda que puedes adaptarla a las necesidades específicas de tu proyecto.
