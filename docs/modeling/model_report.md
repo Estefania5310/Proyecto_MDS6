@@ -174,6 +174,9 @@ Los resultados de la evaluación son excepcionales, indicando un alto rendimient
     * **Macro Average:** Un valor de $0.98$ para precisión, *recall* y F1-score en el promedio macro sugiere que el modelo se desempeña de manera **uniformemente excelente en todas las clases**, sin que una clase domine los resultados ni enmascare el bajo rendimiento en otras.
     * **Weighted Average:** Un valor de $0.98$ en el promedio ponderado también confirma el alto rendimiento general, teniendo en cuenta la proporción de muestras en cada clase.
 
+Se representa el desempeño del modelo en todos los epoch establecidos. En general se observa un buen ajuste principlamente en la data de entrenamiento.
+![Ajuste Fino grafica evaluacion](grafica2.png)
+
 ## Conclusiones y Recomendaciones
 
 El modelo de **Fine-Tuning con EfficientNetB0** ha demostrado ser el enfoque definitivo y más efectivo para la clasificación de enfermedades en hojas de plantas, superando claramente al modelo *baseline* de red convolucional entrenada desde cero.
