@@ -55,7 +55,7 @@ de datos de prueba.
 $$\text{Accuracy} = \frac{\text{Número de Predicciones Correctas}}{\text{Número Total de Muestras}}$$
 
 * **Interpretación:** Un **valor de `accuracy` más alto** indica que el modelo clasifica correctamente una mayor proporción de las imágenes en el conjunto 
-de prueba. Por ejemplo, una precisión del $0.90$ (o $90%$) significa que el modelo clasificó correctamente el $90%$ de las imágenes.
+de prueba. Por ejemplo, una precisión del $0.90$ (o $90$%) significa que el modelo clasificó correctamente el $90$% de las imágenes.
 
 ## Resultados de evaluación
 
@@ -125,7 +125,7 @@ de entrenamiento versus los resultados de la base de test, tanto en la evolucón
 
 ![Gráfica de Precisión del Modelo Baseline](grafica1.png)
 
-Estos resultados indican que el modelo *baseline* logró una **precisión superior al $82%$** en la clasificación de las imágenes de hojas en el 
+Estos resultados indican que el modelo *baseline* logró una **precisión superior al $82$%** en la clasificación de las imágenes de hojas en el 
 conjunto de datos no visto, con un valor de pérdida razonable, lo que sugiere un buen desempeño para el punto de partida.
 
 ## Conclusiones
