@@ -58,8 +58,10 @@ La precisión, representada por la variable **`accuracy`**, es la métrica más 
 Mide la proporción de predicciones correctas del modelo.
 
 * **Definición Técnica:** La precisión se calcula como el **número de predicciones correctas dividido por el número total de muestras** en el conjunto 
-de datos de prueba.  
-    $$\text{Accuracy} = \frac{\text{Número de Predicciones Correctas}}{\text{Número Total de Muestras}}$$  
+de datos de prueba.
+
+$$\text{Accuracy} = \frac{\text{Número de Predicciones Correctas}}{\text{Número Total de Muestras}}$$
+
 * **Interpretación:** Un **valor de `accuracy` más alto** indica que el modelo clasifica correctamente una mayor proporción de las imágenes en el conjunto 
 de prueba. Por ejemplo, una precisión del $0.90$ (o $90\%$) significa que el modelo clasificó correctamente el $90\%$ de las imágenes.
 
@@ -74,89 +76,69 @@ El modelo *baseline* fue entrenado y evaluado, obteniendo los siguientes resulta
 La arquitectura del modelo, denominada "sequential", está compuesta por capas convolucionales (`Conv2D`), capas de *pooling* (`MaxPooling2D`), 
 una capa de aplanamiento (`Flatten`) y una capa densa final para la clasificación. La configuración específica de las capas se detalla a continuación:
 
-```
-
 Model: "sequential"
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
-┃ Layer (type)                    ┃ Output Shape           ┃       Param \#┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ conv2d (Conv2D)                 │ (None, 178, 178, 32)   │           896 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max\_pooling2d (MaxPooling2D)   │ (None, 89, 89, 32)     │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d\_1 (Conv2D)              │ (None, 87, 87, 64)     │        18,496 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max\_pooling2d\_1 (MaxPooling2D)│ (None, 43, 43, 64)     │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d\_2 (Conv2D)              │ (None, 41, 41, 128)    │        73,856 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max\_pooling2d\_2 (MaxPooling2D)│ (None, 20, 20, 128)    │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ flatten (Flatten)               │ (None, 51200)          │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense (Dense)                   │ (None, 3)              │       153,603 │
-└─────────────────────────────────┴────────────────────────┴───────────────┘
-Total params: 246,851 (964.26 KB)
-Trainable params: 246,851 (964.26 KB)
-Non-trainable params: 0 (0.00 B)
+| Layer (type)       | Output Shape         | Param # |
+| :----------------- | :------------------- | :------ |
+| conv2d (Conv2D)    | (None, 178, 178, 32) | 896     |
+| max_pooling2d (MaxPooling2D) | (None, 89, 89, 32)   | 0       |
+| conv2d_1 (Conv2D)  | (None, 87, 87, 64)   | 18,496  |
+| max_pooling2d_1 (MaxPooling2D) | (None, 43, 43, 64)   | 0       |
+| conv2d_2 (Conv2D)  | (None, 41, 41, 128)  | 73,856  |
+| max_pooling2d_2 (MaxPooling2D) | (None, 20, 20, 128)  | 0       |
+| flatten (Flatten)  | (None, 51200)        | 0       |
+| dense (Dense)      | (None, 3)            | 153,603 |
 
-```
+* Total params: 246,851 (964.26 KB)
+* Trainable params: 246,851 (964.26 KB)
+* Non-trainable params: 0 (0.00 B)
 
 ### Proceso de Entrenamiento
 
 El entrenamiento del modelo se realizó durante $15$ épocas. A continuación, se presentan las métricas de pérdida (`loss`) y precisión (`accuracy`) 
 tanto para el conjunto de entrenamiento como para el conjunto de validación (`val_loss`, `val_accuracy`) a lo largo de las primeras épocas:
 
-```
-
-\--- Entrenando el modelo ---
-Epoch 1/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 620s 61s/step - accuracy: 0.3565 - loss: 1.1807 - val\_accuracy: 0.4333 - val\_loss: 1.0345
-Epoch 2/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 5s 428ms/step - accuracy: 0.5000 - loss: 1.0507 - val\_accuracy: 0.6500 - val\_loss: 1.0040
-Epoch 3/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 143s 8s/step - accuracy: 0.5255 - loss: 0.9657 - val\_accuracy: 0.5167 - val\_loss: 0.8616
-Epoch 4/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 9s 428ms/step - accuracy: 0.5469 - loss: 0.8223 - val\_accuracy: 0.5167 - val\_loss: 0.7723
-Epoch 5/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 82s 8s/step - accuracy: 0.6392 - loss: 0.7674 - val\_accuracy: 0.6833 - val\_loss: 0.6622
-Epoch 6/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 9s 411ms/step - accuracy: 0.7656 - loss: 0.6034 - val\_accuracy: 0.7500 - val\_loss: 0.5580
-Epoch 7/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 83s 8s/step - accuracy: 0.6745 - loss: 0.7094 - val\_accuracy: 0.7833 - val\_loss: 0.6202
-Epoch 8/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 8s 349ms/step - accuracy: 0.8203 - loss: 0.5560 - val\_accuracy: 0.8000 - val\_loss: 0.5839
-Epoch 9/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 79s 8s/step - accuracy: 0.7435 - loss: 0.5893 - val\_accuracy: 0.8333 - val\_loss: 0.4772
-Epoch 10/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 9s 451ms/step - accuracy: 0.7188 - loss: 0.6578 - val\_accuracy: 0.7833 - val\_loss: 0.5242
-Epoch 11/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 78s 8s/step - accuracy: 0.7623 - loss: 0.5534 - val\_accuracy: 0.8167 - val\_loss: 0.4537
-Epoch 12/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 7s 353ms/step - accuracy: 0.8359 - loss: 0.4461 - val\_accuracy: 0.8167 - val\_loss: 0.4663
-Epoch 13/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 78s 8s/step - accuracy: 0.8369 - loss: 0.4239 - val\_accuracy: 0.7833 - val\_loss: 0.5524
-Epoch 14/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 9s 402ms/step - accuracy: 0.8516 - loss: 0.3921 - val\_accuracy: 0.8167 - val\_loss: 0.3962
-Epoch 15/15 10/10 ━━━━━━━━━━━━━━━━━━━━ 141s 9s/step - accuracy: 0.8589 - loss: 0.3890 - val\_accuracy: 0.8500 - val\_loss: 0.4032
-
-```
+| Época | Precisión (Train) | Pérdida (Train) | Precisión (Val) | Pérdida (Val) |
+| :---- | :---------------- | :-------------- | :-------------- | :------------ |
+| 1     | 0.3565            | 1.1807          | 0.4333          | 1.0345        |
+| 2     | 0.5000            | 1.0507          | 0.6500          | 1.0040        |
+| 3     | 0.5255            | 0.9657          | 0.5167          | 0.8616        |
+| 4     | 0.5469            | 0.8223          | 0.5167          | 0.7723        |
+| 5     | 0.6392            | 0.7674          | 0.6833          | 0.6622        |
+| 6     | 0.7656            | 0.6034          | 0.7500          | 0.5580        |
+| 7     | 0.6745            | 0.7094          | 0.7833          | 0.6202        |
+| 8     | 0.8203            | 0.5560          | 0.8000          | 0.5839        |
+| 9     | 0.7435            | 0.5893          | 0.8333          | 0.4772        |
+| 10    | 0.7188            | 0.6578          | 0.7833          | 0.5242        |
+| 11    | 0.7623            | 0.5534          | 0.8167          | 0.4537        |
+| 12    | 0.8359            | 0.4461          | 0.8167          | 0.4663        |
+| 13    | 0.8369            | 0.4239          | 0.7833          | 0.5524        |
+| 14    | 0.8516            | 0.3921          | 0.8167          | 0.3962        |
+| 15    | 0.8589            | 0.3890          | 0.8500          | 0.4032        |
 
 ### Rendimiento en el Conjunto de Prueba
 
 Finalmente, el modelo fue evaluado en un conjunto de datos de prueba independiente para estimar su capacidad de generalización. Los resultados 
 obtenidos fueron:
 
-```
-
-\--- Evaluando el modelo en el conjunto de prueba ---
-2/2 ━━━━━━━━━━━━━━━━━━━━ 10s 1s/step - accuracy: 0.8245 - loss: 0.6704
-
-```
+| Métrica              | Valor   |
+| :------------------- | :------ |
+| Precisión (Test)     | 0.8245  |
+| Pérdida (Test)       | 0.6704  |
 
 * **Pérdida en el conjunto de prueba:** $0.6460$
 * **Precisión en el conjunto de prueba:** $0.8267$
 
-Estos resultados indican que el modelo *baseline* logró una **precisión superior al $82\%$** en la clasificación de las imágenes de hojas en el 
-conjunto de datos no visto, con un valor de pérdida razonable, lo que sugiere un buen desempeño para el punto de partida.
-```
-
 ------------------------------------------------------------------------------------------------------------
-
-
-### Resultados de evaluación
-
-Tabla que muestra los resultados de evaluación del modelo baseline, incluyendo las métricas de evaluación.
 
 ## Análisis de los resultados
 
-Descripción de los resultados del modelo baseline, incluyendo fortalezas y debilidades del modelo.
+veamos las pérdidas del modelo y la progresión del accuracy a lo largo de las épocas, en general se observa una brecha importante entre los resultados 
+de entrenamiento versus los resultados de la base de test, tanto en la evolucón del accuracy como en la disminución del parámetro de pérdida.
+
+(docs/modeling/grafica1.png)
+
+Estos resultados indican que el modelo *baseline* logró una **precisión superior al $82\%$** en la clasificación de las imágenes de hojas en el 
+conjunto de datos no visto, con un valor de pérdida razonable, lo que sugiere un buen desempeño para el punto de partida.
 
 ## Conclusiones
 
