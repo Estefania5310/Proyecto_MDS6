@@ -1,4 +1,4 @@
-
+import tensorflow as tf
 def create_model_0(input_shape, num_classes):
     """
     Crea un modelo de red neuronal convolucional (CNN).
@@ -11,24 +11,24 @@ def create_model_0(input_shape, num_classes):
     Returns:
         tf.keras.Model: El modelo CNN compilado.
     """
-    model = keras.models.Sequential([
+    model = tf.keras.models.Sequential([
         # Primera capa convolucional y de pooling
-        keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_shape),
-        keras.layers.MaxPooling2D((2, 2)),
+        tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=input_shape),
+        tf.keras.layers.MaxPooling2D((2, 2)),
 
         # Segunda capa convolucional y de pooling
-        keras.layers.Conv2D(64, (3, 3), activation='relu'),
-        keras.layers.MaxPooling2D((2, 2)),
+        tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
+        tf.keras.layers.MaxPooling2D((2, 2)),
 
         # Tercera capa convolucional y de pooling
-        keras.layers.Conv2D(128, (3, 3), activation='relu'),
-        keras.layers.MaxPooling2D((2, 2)),
+        tf.keras.layers.Conv2D(128, (3, 3), activation='relu'),
+        tf.keras.layers.MaxPooling2D((2, 2)),
 
         # Aplanar la salida para conectarla a las capas densas
-        keras.layers.Flatten(),
+        tf.keras.layers.Flatten(),
 
         # Capa densa
-        keras.layers.Dense(units=num_classes, activation='softmax') # Capa de salida con activación softmax para clasificación multiclase
+        tf.keras.layers.Dense(units=num_classes, activation='softmax') # Capa de salida con activación softmax para clasificación multiclase
     ])
 
     # Compilar el modelo
