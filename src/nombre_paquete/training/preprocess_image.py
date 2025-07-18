@@ -1,5 +1,7 @@
 import tensorflow as tf
-from tensorflow.keras.applications.efficientnet import preprocess_input
+
+# Define la función de preprocesamiento
 def preprocess_image(image, label):
-    image = preprocess_input(image)
+    # Usa la ruta completa desde el módulo 'tf'
+    image = tf.keras.applications.efficientnet.preprocess_input(image)
     return image, label
