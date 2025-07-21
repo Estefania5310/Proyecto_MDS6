@@ -1,4 +1,5 @@
 
+import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 def create_image_data_generators(
