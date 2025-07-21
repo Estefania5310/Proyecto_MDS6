@@ -1,4 +1,6 @@
 
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
 def create_image_data_generators(
     train_dir,
     val_dir,
