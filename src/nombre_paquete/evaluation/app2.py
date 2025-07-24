@@ -24,8 +24,7 @@ app = FastAPI(
     description="API para clasificar imágenes saludables o afectadas por 2 enfermedades.",
     version="1.0.0"
 )
-# Variable global para almacenar el modelo
-model = None
+
 model = joblib.load(MODEL_PATH)
 
 # --- Clases de Pydantic para el Input/Output (AJUSTADAS PARA IMÁGENES BASE64) ---
@@ -35,21 +34,22 @@ class ImageInput(BaseModel):
     image_base64: str
 
 class PredictionOutput(BaseModel):
-    predicted_class: str
-    confidence: float
-    #all_probabilities: Dict[str, float] # Probabilidades para todas las clases
+  saludable: float
+  powdery: float
+  rush: float
+  predicted_class: str
+  confidence: float
 
 # --- Endpoint Raíz ---
 @app.get("/")
 async def read_root():
     return {"message": "¡API funcionando! Visita /docs para ver la documentación."} 
 
-@app.get("/predict")
+@app.post("/predict")
 async def read_root(data: ImageInput) -> PredictionOutput:
   img_array, __ = preprocess_image_for_prediction(img_path = data.image_base64)
   prediction = model.predict(img_array).flatten()
   results = interpret_prediction(prediccion)
-  preds = PredictionOutput('predicted_class': results['predicted_class'],
-                           'confidence': results['confidence'])
+  preds = PredictionOutput(**results)
   return preds
 
