@@ -1,4 +1,3 @@
-%%writefile ./src/nombre_paquete/preprocessing/loading.py
 from pathlib import Path
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
