@@ -6,15 +6,13 @@ from tensorflow.keras.preprocessing import image # Se mantiene para el preproces
 import numpy as np
 import base64
 import io
-import joblib # Importamos joblib para cargar el modelo
+import joblib
 
 from src.nombre_paquete.preprocessing.preprocessing_prediction import preprocess_image_for_prediction
 from src.nombre_paquete.evaluation.interpret_prediction import interpret_prediction
 
 
-# --- Configuración del Modelo ---
-# Asegúrate de que esta ruta sea correcta para tu modelo guardado con joblib.dump
-MODEL_PATH = "./src/nombre_paquete/models/best_models/model.joblib" # ¡AJUSTA ESTA RUTA A TU MODELO JOBLIB!
+MODEL_PATH = "./src/nombre_paquete/models/best_models/model.joblib"
 
 
 class ApiInput(BaseModel):
@@ -22,7 +20,7 @@ class ApiInput(BaseModel):
     Define la estructura de la entrada del API para una imagen.
     La imagen se espera como una cadena Base64.
     """
-    image_base64: str # La imagen codificada en Base64
+    image_base64: str
 
 class ApiOutput(BaseModel):
     """
@@ -33,8 +31,8 @@ class ApiOutput(BaseModel):
     confidence: float
     probabilities: Dict[str, float]
 
-app = FastAPI() # Creamos la instancia de FastAPI
-model: Optional[object] = None # Declaramos el modelo como Optional[object] ya que joblib puede cargar varios tipos
+app = FastAPI()
+model: Optional[object] = None
 
 
 @app.on_event("startup")
@@ -46,15 +44,14 @@ async def load_model():
     try:
         model = joblib.load(MODEL_PATH)
         print(f"Modelo '{MODEL_PATH}' cargado exitosamente con joblib.")
-        # Si el modelo cargado es un modelo de Keras, model.summary() podría funcionar.
-        # De lo contrario, esta línea podría causar un error y debería ser comentada o eliminada.
-        # if hasattr(model, 'summary'):
-        #     model.summary()
     except Exception as e:
         raise RuntimeError(f"Error al cargar el modelo: {e}. Asegúrate de que la ruta es correcta y el archivo existe.")
 
+@app.get("/")
+async def read_root():
+    return {"message": "¡API de clasificación de imágenes funcionando!"}
 
-@app.post("/predict_image") # Nuevo endpoint para predicción de imágenes
+@app.post("/predict_image")
 async def predict_image_class(data: ApiInput) -> ApiOutput:
     """
     Endpoint para predecir la clase de una imagen enviada como Base64.
