@@ -91,19 +91,22 @@ A continuación, se describe la arquitectura actual de la solución basada en Go
 
 - **Flujo de Datos**
 
-![Flujo de datos](https://github.com/Estefania5310/Proyecto_MDS6/blob/main/scripts/deployment/diagrama_arquitectura.png)
-
-
   1. Un Cliente/Usuario envía una solicitud HTTP (POST) con datos de imagen al endpoint expuesto por la aplicación FastAPI en Google Colaboratory.
   2. La Aplicación FastAPI recibe la solicitud.
   3. La aplicación preprocesa la imagen de entrada y la pasa al Modelo CNN.
   4. El Modelo CNN realiza la inferencia y devuelve la predicción.
   5. La Aplicación FastAPI formula una respuesta y la envía de vuelta al Cliente/Usuario.
 
+![Flujo de datos](https://github.com/Estefania5310/Proyecto_MDS6/blob/main/scripts/deployment/diagrama_arquitectura.png)
+
+
+
+
   **Limitaciones:** La sesión de Colab es efímera y requiere intervención manual para mantenerse activa, carece de alta disponibilidad, escalabilidad inherente, monitoreo de producción y mecanismos de seguridad robustos.
 
 
 ## Código de despliegue
+
   * **Archivo principal:**
     * **Nombre:** `App2`
     * **Ruta dentro del proyecto:** `src/nombre_paquete/evaluation/app2.py`
@@ -131,7 +134,27 @@ A continuación, se describe la arquitectura actual de la solución basada en Go
 ## Documentación del despliegue
 
 - **Instrucciones de instalación:** 
+  1. Clonar el repositorio Git.
+  2. Construir la imagen Docker (docker build -t clasificador-fitosanitario-api .).
+  3. Configurar variables de entorno en un archivo .env.
+  4. Desplegar el contenedor usando docker-compose up -d (con un docker-compose.yml que expone el puerto).
+  5. Verificar que el servicio esté Up con docker ps.
+     
+- **Instrucciones de configuración:**
+  1. Configurar API_KEY, MODEL_PATH, LOG_LEVEL y UVICORN_PORT vía variables de entorno.
+  2. Configurar HTTPS con un balanceador de carga/proxy inverso.
+  3. Establecer políticas de firewall para restringir el acceso.
 
-- **Instrucciones de configuración:** 
 - **Instrucciones de uso:**
-- **Instrucciones de mantenimiento:** 
+
+El modelo expone un endpoint POST /predict que espera una imagen (multipart/form-data) y una X-API-Key. Retorna un JSON con las probabilidades, la clase predicha y la confianza.
+
+- **Instrucciones de mantenimiento:**
+  1. Instrucciones de Mantenimiento
+  2. Monitoreo continuo (salud del contenedor, métricas, logs).
+  3. Actualización del modelo y dependencias (reconstruyendo y redesplegando la imagen Docker).
+  4. Escalabilidad horizontal según la carga.
+  5. Copia de seguridad del modelo y código.
+  6. Rotación de API Keys y actualizaciones de seguridad.
+
+
