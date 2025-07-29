@@ -15,7 +15,7 @@ Los resultados generales del proyecto demuestran la capacidad de la metodología
 
 ## Resultados del proyecto
 
-# Definición y Comprensión del Negocio:
+### Definición y Comprensión del Negocio:
 
 El proyecto se centró en el desarrollo de un modelo de aprendizaje automático para la clasificación de datos visuales, con la aplicación específica en la detección de enfermedades en hojas de plantas. El objetivo principal fue construir un modelo de aprendizaje profundo (CNN) capaz de realizar clasificaciones precisas.
 
@@ -29,7 +29,7 @@ Se realizó un redimensionamiento de imágenes a tamaños estándar (180x180 par
 
 Se llevó a cabo un análisis exploratorio de los datos, incluyendo la distribución de clases (balanceadas) y la composición de color, para comprender las características subyacentes relevantes para la clasificación.
 
-#Modelado y Entrenamiento:
+### Modelado y Entrenamiento:
 
 Como modelo Baseline Se desarrolló una red neuronal convolucional básica como punto de partida, con una arquitectura secuencial que incluía capas Conv2D, MaxPooling2D, Flatten y Dense. Se definió la variable de entrada como lotes de imágenes preprocesadas y la variable objetivo como la categoría de clase codificada (one-hot).
 
@@ -45,7 +45,7 @@ Se escogió cómo modelo final el modelo Transfer Learning con EfficientNetB0, d
 
 El modelo final demostró un rendimiento sobresaliente en el conjunto de prueba independiente. Precisión Global (Accuracy): Alcanzó un impresionante 0.98 (o 98% ). Este modelo superó drásticamente al Modelo Baseline, que había logrado una precisión del 82%. Esta mejora de 16 puntos porcentuales en la precisión demuestra la efectividad de la estrategia de transfer learning y fine-tuning para maximizar el rendimiento del modelo en tareas de clasificación de imágenes.
 
-# Descripción de los resultados y su relevancia para el negocio
+### Descripción de los resultados y su relevancia para el negocio
 
 Los resultados obtenidos validan la eficacia de las técnicas de Machine Learning y aprendizaje profundo aplicadas a este tipo de problematicas.
 
@@ -89,7 +89,6 @@ El proyecto se encuentra en el dominio de la agricultura de precisión, donde co
 Los agricultores se enfrentan al reto constante de mantener la sanidad y productividad de sus plantaciones, para esto se deben considerar múltiples factores agronómicos y ambientales, como la fertilidad del suelo, nivel de humedad, pronóstico del tiempo y el control de plagas y enfermedades. Sin embargo, realizar este monitoreo de manera continua y precisa en superficies amplias resulta sumamente costoso, consume mucho tiempo y requiere personal capacitado. En la práctica, esto significa que muchas enfermedades son detectadas tarde, cuando ya han causado daños significativos.
 
 La falta de sistemas eficientes de detección y respuesta oportuna compromete no solo la salud de las plantas, sino también la sostenibilidad económica de las fincas. En cultivos de alto valor como el café, las enfermedades pueden reducir la productividad hasta en un 40% si no se controlan a tiempo, lo que genera pérdidas millonarias, incrementando el uso de agroquímicos y puede comprometer contratos de exportación que requieren estándares de calidad altos.(Atakishiyev et al., 2023).
-
 
 ## Conclusiones
 
